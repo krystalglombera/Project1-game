@@ -1,0 +1,68 @@
+body {
+  background-color: black;
+}
+
+h1 {
+  color: white;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+/*.row {
+  padding: 40px;
+  margin: 100px;*/
+  /*text-align: center;*/
+  /*margin: auto;*/
+/*}*/
+#board {
+  text-align: center;
+}
+
+#box1 {
+  border: 1px solid red;
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+  /*margin: auto;*/
+  background-color: red;
+  /*margin-left: 490px;*/
+}
+
+#box2 {
+  border: 1px solid yellow;
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+  /*margin: auto;*/
+  background-color: yellow;
+}
+
+#box3 {
+  border: 1px solid green;
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+  /*margin: auto;*/
+  background-color: green;
+  /*margin-left: 68px;*/
+
+}
+
+#box4 {
+  border: 1px solid blue;
+  height: 200px;
+  width: 200px;
+  /*margin: auto;*/
+  display: inline-block;
+  background-color: blue;
+}
+
+#button {
+  background-color: white;
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 15px;
+  font-family: monospace;
+  margin: 15px;
+}
