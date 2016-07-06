@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <title>SIMON</title>
     <h1>SIMON</h1>
 
@@ -11,21 +12,21 @@
     <div id="main-board">
     <div id="board">
       <div class="row">
-        <div id="box1"></div>
-        <div id="box2"></div>
+        <div id="red" class="tile"></div>
+        <div id="yellow" class="tile"></div>
       </div>
       <div class="row">
-        <div id="box3"></div>
-        <div id="box4"></div>
+        <div id="green" class="tile"></div>
+        <div id="blue" class="tile"></div>
       </div>
       </div>
     </div>
   </div>
   <div>
   <div style="text-align: center;">
-    <button id="button-start" onclick="startgame()">Start Game</button>
+    <button id="button-start">Start Game</button>
   </div>
-<script src="https://code.jquery.com/jquery-3.0.0.min.js"    integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
-<script src="main.js"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"    integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script><script src="main.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
   </body>
 </html>
