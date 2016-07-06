@@ -18,6 +18,11 @@ h1 {
   text-align: center;
 }
 
+.game-info {
+  color: yellow;
+  font-family: sans-serif;;
+  font-size: 16px;
+}
 .tile {
 	opacity: 0.6;
 	-webkit-transition: opacity 250ms ease;
