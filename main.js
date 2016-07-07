@@ -53,9 +53,9 @@ function animate(sequence) {
 
 function lightUp(boxId) {
   var box = $('#' + boxId).addClass('lit'); //selects each div by ID to addClass of lit  which changes the background opacity to give the effect of lighting up
-  window.setTimeout(function() {
+  window.setTimeout(function() {//setTimeout is a method that calls this function after a specified time
     box.removeClass('lit'); //lit class is removed going back to its normal color
-  }, 300);
+  }, 300); //second parameter tells it to wait this # of milliseconds before exeucting code
 }
 
 $('.tile').on('click', function(squares) {
