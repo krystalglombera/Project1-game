@@ -1,3 +1,4 @@
+//button starts game and changes Start Game text to Reset Game then initiates playGame function.
 $('#button-start').on('click', function() {
   $('#button-start').text('Reset Game');
   playGame();
@@ -7,7 +8,7 @@ var isUsersTurn = false
 var playerClicks = [];
 var round = 0
 
-//when code animates sequence, set this equal to true, then on the on-click
+//lists the round sequences that will light up acting as the Computer
 var roundSequence = [
   ["red", "green"],
   ["yellow", "yellow", "blue"],
@@ -16,9 +17,11 @@ var roundSequence = [
   ["blue", "blue", "red", "green", "yellow", "red"],
   ["red", "yellow", "blue", "red", "blue", "green", "green", "yellow"],
   ["green", "green", "yellow", "blue", "red", "red", "blue"],
-  ["green", "red", "yellow", "blue", "blue", "red", "green", "yellow", "blue"]
+  ["green", "red", "yellow", "blue", "blue", "red", "green", "yellow", "blue"],
+  ["green", "red", "yellow", "red", "blue", "green", "yellow", "yellow", "blue", "green"]
 ];
 
+//sets the round counter at zero, changes the 'Press Start Game' background to black and removes the text, lastly, calls the playRound function
 function playGame() {
   $('#status').css({
     'background-color': 'black'
@@ -28,19 +31,20 @@ function playGame() {
 
 }
 
+//increases the round# displayed in the text as the player wins the round
 function playRound(roundNumber) {
-  $('#round').text("Round " + (roundNumber + 1));
-  animate(roundSequence[roundNumber]);
+  $('#round').text("Round " + (roundNumber + 1)); //adds one because we indicated above that the rounds start at 0, but the text will show rounds starting at 1
+  animate(roundSequence[roundNumber]); //calls animate function and pushes through these two parameters
   playerClicks = [];
 }
 
 function animate(sequence) {
-  isUsersTurn = false;
+  isUsersTurn = false; //function should only executive if it is NOT the players turn
   var i = 0;
-  var interval = setInterval(function() {
-    lightUp(sequence[i]);
+  var interval = setInterval(function() {  //setInterval is a function that executes a fixed time delay between each call (regulates the timing of each action)
+    lightUp(sequence[i]); //second function is set off as it goes through array lighting up the current color in sequence
     i++;
-    if (i >= sequence.length) {
+    if (i >= sequence.length) { //clearInterval cancels the repeated action sent from setInterval when the end of the sequence is reached
       clearInterval(interval);
       isUsersTurn = true;
     }
@@ -48,62 +52,38 @@ function animate(sequence) {
 }
 
 function lightUp(boxId) {
-  var box = $('#' + boxId).addClass('lit');
+  var box = $('#' + boxId).addClass('lit'); //selects each div by ID to addClass of lit  which changes the background opacity to give the effect of lighting up
   window.setTimeout(function() {
-    box.removeClass('lit');
+    box.removeClass('lit'); //lit class is removed going back to its normal color
   }, 300);
 }
 
-//prints id name when div is clicked
 $('.tile').on('click', function(squares) {
-  var id = $(this).attr('id');
-
+  var id = $(this).attr('id'); //onclick function selects the id attribute
   console.log("Clicked on " + id + ", isUsersTurn = " + isUsersTurn);
-
-  if (!isUsersTurn) {
+  if (!isUsersTurn) { //if not users turn this function will not execute
     return false;
   }
 
-  lightUp(id);
-  playerClicks.push(id);
+  lightUp(id); //calls lightUp function and passes through id parameter
+  playerClicks.push(id); //when the player indicates their user selection, the id name will be pushed into an empty playerClicks array
   console.log(playerClicks);
-  var result = arraysEqual(playerClicks, roundSequence[round]);
+  var result = arraysEqual(playerClicks, roundSequence[round]); //this array compares the playerClicks and the roundSequence to see if it is a match or not. a match will continue the game, a mismatch will end the game
   if (result) {
-    if (playerClicks.length === roundSequence[round].length) {
-      // var playerWins = function (){
+    if (playerClicks.length === roundSequence[round].length) { //this compares to see if the length is the same
       $('#status').text('Player Wins!');
       round = round + 1
       playRound(round);
-      // }
     }
   } else {
-    // var gameOver = function (){
     $('#status').css({
       'background-color': 'red',
       'color': 'white'
     }).text('Game Over!');
-    // }
   }
 });
 
-//************HOMEWORK**********************
-//write function to display winningSequence to print "Player Wins!" (instead of alert) create function in the global scope and call it from/within the click function
-
-// var winningSequence = function () {
-//   if(result === true){
-//     return "Players Wins!";
-//   }
-//   else{
-//     return "Game Over!";
-//   }
-// }
-
-//write function to display gameOver to print "Game Over!" (instead of alert)
-
-//create rounds(create global var roundCounter will begin at 0
-//*******************************************
-
-//this function is comparing the length of two arrays and if it passes it moves onto the for loop to compare the elements within the array. if they match, it returns true, if they do not match, it returns false.
+//compares after the length is compared above, the for loop will execute to compare the values within the array. if they match, it returns true, if they do not match, it returns false.
 function arraysEqual(arr1, arr2) {
   for (var i = 0; i < arr1.length; i++) {
     if (arr1[i] !== arr2[i]) {
@@ -112,6 +92,3 @@ function arraysEqual(arr1, arr2) {
   }
   return true;
 }
-
-//1) store users clicks in the empty array and check to see if this array is equal if so win that round, alert them they won!
-//2) if not lose, and create reset button (write header message and create button)
