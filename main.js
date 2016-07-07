@@ -5,58 +5,85 @@ $('#button-start').on('click', function() {
 
 var isUsersTurn = false
 var playerClicks = [];
-var round = 1
+var round = 0
 
 //when code animates sequence, set this equal to true, then on the on-click
-var roundSequence =
-["red", "green"];
-// ["yellow", "yellow", "blue"],
-// ["green", "blue", "red", "green"]
-// ];
-function playGame (){
-    animate(roundSequence);
+var roundSequence = [
+  ["red", "green"],
+  ["yellow", "yellow", "blue"],
+  ["green", "blue", "red", "green"],
+  ["red", "blue", "blue", "yellow", "red"],
+  ["blue", "blue", "red", "green", "yellow", "red"],
+  ["red", "yellow", "blue", "red", "blue", "green", "green", "yellow"],
+  ["green", "green", "yellow", "blue", "red", "red", "blue"],
+  ["green", "red", "yellow", "blue", "blue", "red", "green", "yellow", "blue"]
+];
+
+function playGame() {
+  $('#status').css({
+    'background-color': 'black'
+  }).text('');
+  round = 0;
+  playRound(round);
+
+}
+
+function playRound(roundNumber) {
+  $('#round').text("Round " + (roundNumber + 1));
+  animate(roundSequence[roundNumber]);
+  playerClicks = [];
 }
 
 function animate(sequence) {
-	var i = 0;
-	var interval = setInterval(function() {
-		lightUp(sequence[i]);
-        i++;
-        if (i >= sequence.length) {
-			clearInterval(interval);
-        }
-   }, 600);
+  isUsersTurn = false;
+  var i = 0;
+  var interval = setInterval(function() {
+    lightUp(sequence[i]);
+    i++;
+    if (i >= sequence.length) {
+      clearInterval(interval);
+      isUsersTurn = true;
+    }
+  }, 600);
 }
 
-function lightUp(box) {
-	  var box = $('#' + box).addClass('lit');
-	    window.setTimeout(function() {
-		      box.removeClass('lit');
-	    }, 300);
+function lightUp(boxId) {
+  var box = $('#' + boxId).addClass('lit');
+  window.setTimeout(function() {
+    box.removeClass('lit');
+  }, 300);
 }
 
 //prints id name when div is clicked
 $('.tile').on('click', function(squares) {
-//     // if(!isUsersTurn) {
-//     //   return false;
-//     // }
-    playerClicks.push($(this).attr('id'));
-    console.log(playerClicks);
-    var result = arraysEqual(playerClicks, roundSequence);
-    if(result) {
-      if(playerClicks.length === roundSequence.length){
-        // var playerWins = function (){
-          $('#status').text('Player Wins!');
-          round = round + 1
-          $('#round').text("Round " + round)
-          console.log(round);
-        // }
-      }
-    }else {
-      // var gameOver = function (){
-        $('#status').text('Game Over!');
+  var id = $(this).attr('id');
+
+  console.log("Clicked on " + id + ", isUsersTurn = " + isUsersTurn);
+
+  if (!isUsersTurn) {
+    return false;
+  }
+
+  lightUp(id);
+  playerClicks.push(id);
+  console.log(playerClicks);
+  var result = arraysEqual(playerClicks, roundSequence[round]);
+  if (result) {
+    if (playerClicks.length === roundSequence[round].length) {
+      // var playerWins = function (){
+      $('#status').text('Player Wins!');
+      round = round + 1
+      playRound(round);
       // }
     }
+  } else {
+    // var gameOver = function (){
+    $('#status').css({
+      'background-color': 'red',
+      'color': 'white'
+    }).text('Game Over!');
+    // }
+  }
 });
 
 //************HOMEWORK**********************
@@ -77,20 +104,14 @@ $('.tile').on('click', function(squares) {
 //*******************************************
 
 //this function is comparing the length of two arrays and if it passes it moves onto the for loop to compare the elements within the array. if they match, it returns true, if they do not match, it returns false.
-function arraysEqual (arr1, arr2) {
-    for(var i = 0; i < arr1.length; i++) {
-      if(arr1[i] !== arr2[i]) {
-          return false;
-      }
-    } return true;
+function arraysEqual(arr1, arr2) {
+  for (var i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return false;
+    }
+  }
+  return true;
 }
-
-//take out for loop for roundSequence, hard code to a sequence - use a global variable for roundNumber
-//      $('h1').text('ROUND ' + round + '!');
-//      animate(sequence);
-//      isUsersTurn = true;
-//    }
-// }
 
 //1) store users clicks in the empty array and check to see if this array is equal if so win that round, alert them they won!
 //2) if not lose, and create reset button (write header message and create button)
