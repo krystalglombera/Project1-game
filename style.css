@@ -8,12 +8,6 @@ h1 {
   text-align: center;
 }
 
-/*.row {
-  padding: 40px;
-  margin: 100px;*/
-  /*text-align: center;*/
-  /*margin: auto;*/
-/*}*/
 #board {
   text-align: center;
 }
@@ -23,13 +17,9 @@ h1 {
   font-family: sans-serif;
   font-size: 16px;
 }
+
 .tile {
 	opacity: 0.6;
-	-webkit-transition: opacity 250ms ease;
-	-moz-transition: opacity 250ms ease;
-	-ms-transition: opacity 250ms ease;
-	-o-transition: opacity 250ms ease;
-	transition: opacity 250ms ease;
 }
 
 .tile.lit {
@@ -51,7 +41,6 @@ h1 {
   height: 200px;
   width: 200px;
   display: inline-block;
-  /*margin: auto;*/
   background-color: yellow;
   border-radius: 0px 80px 0px 0px;
 
@@ -62,19 +51,14 @@ h1 {
   height: 200px;
   width: 200px;
   display: inline-block;
-  /*margin: auto;*/
   background-color: green;
   border-radius: 0px 0px 0px 80px;
-
-  /*margin-left: 68px;*/
-
 }
 
 #blue {
   border: 3px solid white;
   height: 200px;
   width: 200px;
-  /*margin: auto;*/
   display: inline-block;
   background-color: blue;
   border-radius: 0px 0px 80px 0px;
