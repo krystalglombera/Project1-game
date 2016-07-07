@@ -33,7 +33,16 @@ function flashColors() {
  }
 // }
 // }
-
+// var sequence = [];
+// var copy = [];
+// var round = 0;
+//
+// function startGame () {
+//   sequence = [];
+//   copy = [];
+//   round = 0;
+//   newRound ();
+// }
 
 // for(var i = 0; i ) //for loop for rounds
 //figure out how to do a different color sequence for each round

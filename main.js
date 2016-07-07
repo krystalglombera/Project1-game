@@ -5,15 +5,15 @@ $('#button-start').on('click', function() {
 
 var isUsersTurn = false
 var playerClicks = [];
-
+var round = 1
 
 //when code animates sequence, set this equal to true, then on the on-click
+var roundSequence =
+["red", "green"];
+// ["yellow", "yellow", "blue"],
+// ["green", "blue", "red", "green"]
+// ];
 function playGame (){
-     var roundSequence =
-      ["red", "green"];
-      // ["yellow", "yellow", "blue"],
-      // ["green", "blue", "red", "green"]
-    // ];
     animate(roundSequence);
 }
 
@@ -35,10 +35,6 @@ function lightUp(box) {
 	    }, 300);
 }
 
-//create a var arrayOfTiles, and then create a for loop accesses each index of that array, addClass('lit') to each of those
-
-
-
 //prints id name when div is clicked
 $('.tile').on('click', function(squares) {
 //     // if(!isUsersTurn) {
@@ -46,18 +42,44 @@ $('.tile').on('click', function(squares) {
 //     // }
     playerClicks.push($(this).attr('id'));
     console.log(playerClicks);
-    arraysEqual(playerClicks, roundSequence);
+    var result = arraysEqual(playerClicks, roundSequence);
+    if(result) {
+      if(playerClicks.length === roundSequence.length){
+        // var playerWins = function (){
+          $('h2').text('Player Wins!');
+        // }
+      }
+    }else {
+      // var gameOver = function (){
+        $('h2').text('Game Over!');
+      // }
+    }
 });
 
-//this function is comparing the length of two arrays and if it passes it moves onto the for loop to compare the elements within the array. if they match, it returns true, if they do not match, it returns false. 
+//************HOMEWORK**********************
+//write function to display winningSequence to print "Player Wins!" (instead of alert) create function in the global scope and call it from/within the click function
+
+// var winningSequence = function () {
+//   if(result === true){
+//     return "Players Wins!";
+//   }
+//   else{
+//     return "Game Over!";
+//   }
+// }
+
+//write function to display gameOver to print "Game Over!" (instead of alert)
+
+//create rounds(create global var roundCounter will begin at 0
+//*******************************************
+
+//this function is comparing the length of two arrays and if it passes it moves onto the for loop to compare the elements within the array. if they match, it returns true, if they do not match, it returns false.
 function arraysEqual (arr1, arr2) {
-  if(arr1.length === arr2.length) {
     for(var i = 0; i < arr1.length; i++) {
       if(arr1[i] !== arr2[i]) {
           return false;
       }
     } return true;
-  }
 }
 
 //take out for loop for roundSequence, hard code to a sequence - use a global variable for roundNumber

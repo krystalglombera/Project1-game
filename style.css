@@ -19,8 +19,8 @@ h1 {
 }
 
 .game-info {
-  color: yellow;
-  font-family: sans-serif;;
+  color: #6666FF;
+  font-family: sans-serif;
   font-size: 16px;
 }
 .tile {
@@ -36,21 +36,18 @@ h1 {
   opacity: 1;
 }
 
-
-
 #red {
-  border: 1px solid #D52929;
+  border: 3px solid white;
   height: 200px;
   width: 200px;
   display: inline-block;
-  /*margin: auto;*/
   background-color: #D52929;
   border-radius: 80px 0px 0px 0px;
-  /*margin-left: 490px;*/
+
 }
 
 #yellow {
-  border: 1px solid yellow;
+  border: 3px solid white;
   height: 200px;
   width: 200px;
   display: inline-block;
@@ -61,7 +58,7 @@ h1 {
 }
 
 #green {
-  border: 1px solid green;
+  border: 3px solid white;
   height: 200px;
   width: 200px;
   display: inline-block;
@@ -74,7 +71,7 @@ h1 {
 }
 
 #blue {
-  border: 1px solid blue;
+  border: 3px solid white;
   height: 200px;
   width: 200px;
   /*margin: auto;*/
@@ -91,4 +88,5 @@ h1 {
   padding: 15px;
   font-family: monospace;
   margin: 15px;
+  border: blue;
 }
