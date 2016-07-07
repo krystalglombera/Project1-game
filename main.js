@@ -46,12 +46,15 @@ $('.tile').on('click', function(squares) {
     if(result) {
       if(playerClicks.length === roundSequence.length){
         // var playerWins = function (){
-          $('h2').text('Player Wins!');
+          $('#status').text('Player Wins!');
+          round = round + 1
+          $('#round').text("Round " + round)
+          console.log(round);
         // }
       }
     }else {
       // var gameOver = function (){
-        $('h2').text('Game Over!');
+        $('#status').text('Game Over!');
       // }
     }
 });
